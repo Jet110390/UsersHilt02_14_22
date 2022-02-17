@@ -14,6 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 
+
 class UsersFragment: Fragment() {
 
     private var _binding: FragmentUserBinding? = null
