@@ -1,7 +1,11 @@
 package com.example.usershilt02_14_22.di
 
 import com.bumptech.glide.load.model.stream.HttpGlideUrlLoader.TIMEOUT
+import com.example.usershilt02_14_22.network.repository.PostsRepository
+import com.example.usershilt02_14_22.network.repository.TodosRepository
 import com.example.usershilt02_14_22.network.repository.UsersRepository
+import com.example.usershilt02_14_22.service.PostsService
+import com.example.usershilt02_14_22.service.TodosService
 import com.example.usershilt02_14_22.service.UsersService
 import com.example.usershilt02_14_22.utils.BASE_URL
 import com.squareup.moshi.Moshi
@@ -47,6 +51,28 @@ object AppModule {
             .build()
     }
 
+    @Provides
+    @Singleton
+    fun providesPostService(retrofit: Retrofit): PostsService {
+        return retrofit.create(PostsService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesPostRepository(postsService: PostsService): PostsRepository {
+        return PostsRepository(postsService)
+    }
+    @Provides
+    @Singleton
+    fun providesTodoService(retrofit: Retrofit): TodosService {
+        return retrofit.create(TodosService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesTodoRepository(todosService: TodosService): TodosRepository {
+        return TodosRepository(todosService)
+    }
     @Provides
     @Singleton
     fun providesUserService(retrofit: Retrofit): UsersService {

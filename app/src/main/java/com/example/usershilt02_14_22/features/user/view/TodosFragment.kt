@@ -9,17 +9,15 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.usershilt02_14_22.databinding.FragmentUserBinding
-import com.example.usershilt02_14_22.features.user.adapter.UserAdapter
-import com.example.usershilt02_14_22.features.user.viewmodel.UsersViewModel
-import dagger.hilt.android.AndroidEntryPoint
+import com.example.usershilt02_14_22.features.user.adapter.TodoAdapter
+import com.example.usershilt02_14_22.features.user.viewmodel.TodosViewModel
 
-
-class UsersFragment: Fragment() {
+class TodosFragment: Fragment() {
 
     private var _binding: FragmentUserBinding? = null
     private val binding: FragmentUserBinding get() = _binding!!
 
-    private val viewModel: UsersViewModel by activityViewModels()
+    private val viewModel: TodosViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,19 +33,20 @@ class UsersFragment: Fragment() {
 
 
         with(binding) {
-            viewModel.users.observe(viewLifecycleOwner) {users->
+            viewModel.todos.observe(viewLifecycleOwner) {todos->
                 userRv.apply {
-                    adapter = users?.let { UserAdapter(it) }
+                    adapter = todos?.let { TodoAdapter(it) }
                     layoutManager =
                         LinearLayoutManager(requireContext())
                 }
             }
             backBtn.setOnClickListener {
                 val directions =
-                    UsersFragmentDirections.actionUserFragmentToMainFragment()
+                    TodosFragmentDirections.actionTodoFragmentToMainFragment()
                 findNavController().navigate(directions)
             }
         }
+
     }
 
     override fun onDestroyView() {

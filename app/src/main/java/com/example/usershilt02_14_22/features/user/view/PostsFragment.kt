@@ -9,17 +9,15 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.usershilt02_14_22.databinding.FragmentUserBinding
-import com.example.usershilt02_14_22.features.user.adapter.UserAdapter
-import com.example.usershilt02_14_22.features.user.viewmodel.UsersViewModel
-import dagger.hilt.android.AndroidEntryPoint
+import com.example.usershilt02_14_22.features.user.adapter.PostAdapter
+import com.example.usershilt02_14_22.features.user.viewmodel.PostsViewModel
 
-
-class UsersFragment: Fragment() {
+class PostsFragment: Fragment() {
 
     private var _binding: FragmentUserBinding? = null
     private val binding: FragmentUserBinding get() = _binding!!
 
-    private val viewModel: UsersViewModel by activityViewModels()
+    private val viewModel: PostsViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,16 +33,16 @@ class UsersFragment: Fragment() {
 
 
         with(binding) {
-            viewModel.users.observe(viewLifecycleOwner) {users->
+            viewModel.posts.observe(viewLifecycleOwner) {posts->
                 userRv.apply {
-                    adapter = users?.let { UserAdapter(it) }
+                    adapter = posts?.let { PostAdapter(it) }
                     layoutManager =
                         LinearLayoutManager(requireContext())
                 }
             }
             backBtn.setOnClickListener {
                 val directions =
-                    UsersFragmentDirections.actionUserFragmentToMainFragment()
+                    PostsFragmentDirections.actionPostFragmentToMainFragment()
                 findNavController().navigate(directions)
             }
         }

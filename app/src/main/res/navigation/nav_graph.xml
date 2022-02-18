@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/main_page_fragment">
+    <fragment
+        android:id="@+id/main_page_fragment"
+        android:name="com.example.usershilt02_14_22.features.user.view.MainFragment"
+        tools:layout="@layout/fragment_main"
+        android:label="StartFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_postsFragment"
+            app:destination="@id/posts_fragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_todosFragment"
+            app:destination="@id/todos_fragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_usersFragment"
+            app:destination="@id/users_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/posts_fragment"
+        android:name="com.example.usershilt02_14_22.features.user.view.PostsFragment"
+        android:label="PostsFragment"
+        tools:layout="@layout/fragment_user"
+        >
+        <action
+            android:id="@+id/action_postFragment_to_mainFragment"
+            app:destination="@id/main_page_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/todos_fragment"
+        android:name="com.example.usershilt02_14_22.features.user.view.TodosFragment"
+        android:label="TodosFragment"
+        tools:layout="@layout/fragment_user"
+        >
+        <action
+            android:id="@+id/action_todoFragment_to_mainFragment"
+            app:destination="@id/main_page_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/users_fragment"
+        android:name="com.example.usershilt02_14_22.features.user.view.UsersFragment"
+        android:label="UsersFragment"
+        tools:layout="@layout/fragment_user"
+        >
+        <action
+            android:id="@+id/action_userFragment_to_mainFragment"
+            app:destination="@id/main_page_fragment" />
+    </fragment>
+</navigation>
